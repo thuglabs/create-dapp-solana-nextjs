@@ -5,9 +5,9 @@ https://user-images.githubusercontent.com/188568/137521416-7274837b-6969-4cfc-ba
 
 
 This project includes:
-- Next.JS
+- Next.JS 
 - TypeScript
-- `@solana` modules for wallet and blockchain calls
+- [@solana/wallet-adapter](https://github.com/solana-labs/wallet-adapter) and [@solana/web3.js](https://solana-labs.github.io/solana-web3.js) for interactions with wallets & blockchain.
 - Tailwind CSS (with [daisyUI](https://daisyui.com/))
 
 ## Getting Started
@@ -19,13 +19,14 @@ yarn
 yarn run dev
 ```
 
+// TODO
 If you deploy new Candy Machine you can update UI config here: `./src/config/candy-machine.config.js`.
 
 ## Style
 
 [Tailwind CSS](https://tailwindcss.com/) or [daisyUI](https://daisyui.com/) are selected tools for rapid style development.
 
-You can quickly change theme changing `data-theme` within `src/pages/_document.js:45`.
+You can quickly change theme changing `daisy.themes` within `./tailwind.config.js`.
 More info here: https://daisyui.com/docs/default-themes
 
 
