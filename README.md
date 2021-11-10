@@ -2,11 +2,11 @@
 
 https://user-images.githubusercontent.com/188568/137521416-7274837b-6969-4cfc-ba25-84a560f124df.mov
 
-
-## 🛵 ◍	Demo: https://create-dapp-solana-nextjs.vercel.app/
+## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
 
 This project includes:
-- Next.JS 
+
+- Next.JS
 - TypeScript
 - [@solana/wallet-adapter](https://github.com/solana-labs/wallet-adapter) and [@solana/web3.js](https://solana-labs.github.io/solana-web3.js) for interactions with wallets & blockchain.
 - Tailwind CSS (with [daisyUI](https://daisyui.com/))
@@ -31,9 +31,8 @@ You can quickly change theme changing `daisy.themes` within `./tailwind.config.j
 More info here: https://daisyui.com/docs/default-themes
 
 This app encourage you to use CSS Modules over other style technics (like SASS/LESS, Styled Components, usual CSS).
-It have modular nature and supports modern CSS. [Read more on Next.JS site](https://nextjs.org/docs/basic-features/built-in-css-support). 
+It have modular nature and supports modern CSS. [Read more on Next.JS site](https://nextjs.org/docs/basic-features/built-in-css-support).
 Anyway, if you want to connect LESS there is example code in `./next.config.js`
-
 
 ## Deploy on Vercel
 
