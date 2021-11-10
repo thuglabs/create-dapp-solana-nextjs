@@ -1,6 +1,6 @@
+/** @type {import('next').NextConfig} */
 const withPlugins = require("next-compose-plugins");
 
-/** @type {import('next').NextConfig} */
 /** eslint-disable @typescript-eslint/no-var-requires */
 const withTM = require("next-transpile-modules")([
   "@solana/wallet-adapter-base",
@@ -31,14 +31,18 @@ const plugins = [
   //     /* ... */
   //   },
   // }],
-  [withTM, {
-    webpack5: true,
-    reactStrictMode: true,
-  }],
+  [
+    withTM,
+    {
+      webpack5: true,
+      reactStrictMode: true,
+    },
+  ],
 ];
 
 const nextConfig = {
-  distDir: 'build',
+  distDir: "build",
+  swcMinify: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false;

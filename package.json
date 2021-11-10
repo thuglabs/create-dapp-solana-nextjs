@@ -1,6 +1,6 @@
 {
   "name": "create-dapp-solana-nextjs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,30 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@project-serum/anchor": "^0.14.0",
-    "@solana/spl-token": "^0.1.8",
-    "@solana/wallet-adapter-base": "^0.5.2",
-    "@solana/wallet-adapter-material-ui": "^0.12.1",
-    "@solana/wallet-adapter-react": "^0.9.1",
-    "@solana/wallet-adapter-react-ui": "^0.5.1",
-    "@solana/wallet-adapter-wallets": "^0.7.5",
-    "@solana/web3.js": "^1.24.2",
+    "@solana/wallet-adapter-base": "^0.7.0",
+    "@solana/wallet-adapter-phantom": "^0.7.0",
+    "@solana/wallet-adapter-react": "^0.13.1",
+    "@solana/wallet-adapter-react-ui": "^0.6.0",
+    "@solana/wallet-adapter-solflare": "^0.4.0",
+    "@solana/wallet-adapter-sollet": "^0.8.0",
+    "@solana/wallet-adapter-wallets": "^0.11.3",
     "@tailwindcss/typography": "^0.4.1",
-    "daisyui": "^1.14.4",
-    "next": "11.1.2",
+    "daisyui": "^1.16.2",
+    "next": "12.0.3",
     "next-compose-plugins": "^2.2.1",
-    "next-transpile-modules": "^8.0.0",
+    "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "tailwind": "^4.0.0"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.20",
-    "autoprefixer": "^10.3.7",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "postcss": "^8.3.9",
-    "tailwindcss": "^2.2.17",
-    "typescript": "4.4.2"
+    "@types/node": "16.11.7",
+    "@types/react": "17.0.34",
+    "autoprefixer": "^10.4.0",
+    "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19",
+    "typescript": "4.4.4"
   }
 }
