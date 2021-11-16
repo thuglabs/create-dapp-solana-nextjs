@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "@nfteyez/sol-rayz-react": "^0.7.0",
     "@solana/wallet-adapter-base": "^0.7.0",
     "@solana/wallet-adapter-phantom": "^0.7.0",
     "@solana/wallet-adapter-react": "^0.13.1",
@@ -18,6 +20,7 @@
     "@solana/wallet-adapter-wallets": "^0.11.3",
     "@tailwindcss/typography": "^0.4.1",
     "daisyui": "^1.16.2",
+    "heroicons": "^1.0.5",
     "next": "12.0.3",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^9.0.0",
