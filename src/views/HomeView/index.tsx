@@ -5,6 +5,7 @@ import {
   WalletConnectButton,
 } from "@solana/wallet-adapter-react-ui";
 import styles from "./index.module.css";
+import JupiterForm from "../JupiterForm/JupiterForm";
 
 export const HomeView: FC = ({}) => {
   const { publicKey } = useWallet();
@@ -50,13 +51,20 @@ export const HomeView: FC = ({}) => {
             </div>
           </div>
         </div>
+
+        <JupiterForm />
       </div>
     </div>
   );
 };
 
 const SolanaLogo = () => (
-  <svg width="46" height="35" xmlns="http://www.w3.org/2000/svg" className="inline">
+  <svg
+    width="46"
+    height="35"
+    xmlns="http://www.w3.org/2000/svg"
+    className="inline"
+  >
     <defs>
       <linearGradient
         x1="90.737%"

@@ -1,13 +1,18 @@
 import React, { useMemo } from "react";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-import { ConnectionProvider } from "@solana/wallet-adapter-react";
+import {
+  ConnectionProvider,
+  useConnection,
+  useWallet,
+} from "@solana/wallet-adapter-react";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
-import 'tailwindcss/tailwind.css';
-import '../styles/globals.css';
+import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
 import "../styles/App.css";
+import { JupiterProvider } from "@jup-ag/react-hook";
 
 const SOLANA_NETWORK = WalletAdapterNetwork.Mainnet;
 // const SOLANA_NETWORK = WalletAdapterNetwork.Devnet;
@@ -21,15 +26,31 @@ const WalletProvider = dynamic(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const endpoint = useMemo(() => clusterApiUrl(network), []);
+  const endpoint = useMemo(() => "https://solana-api.projectserum.com", []);
 
   return (
-      <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider>
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider>
+        <JupiterWrapper>
           <Component {...pageProps} />
-        </WalletProvider>
-      </ConnectionProvider>
+        </JupiterWrapper>
+      </WalletProvider>
+    </ConnectionProvider>
   );
 }
+
+const JupiterWrapper: React.FC = ({ children }) => {
+  const { connection } = useConnection();
+  const wallet = useWallet();
+  return (
+    <JupiterProvider
+      cluster="mainnet-beta"
+      connection={connection}
+      userPublicKey={wallet.publicKey || undefined}
+    >
+      {children}
+    </JupiterProvider>
+  );
+};
 
 export default MyApp;
