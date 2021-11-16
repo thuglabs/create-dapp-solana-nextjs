@@ -1,6 +1,9 @@
 # Create Solana Dapp with Next.JS
 
-https://user-images.githubusercontent.com/188568/137521416-7274837b-6969-4cfc-ba25-84a560f124df.mov
+
+https://user-images.githubusercontent.com/188568/142045700-091d598f-5b1a-48fa-9278-6b8d3e712907.mp4
+
+
 
 ## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
 
