@@ -178,10 +178,10 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@jup-ag/core@~0.0.0-alpha.3":
-  version "0.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-0.0.0-alpha.3.tgz#7eaedb740491802dd7895de3ba974754055510a2"
-  integrity sha512-0v5x422iC6uTcqI3SkJoPZxu5qOuEv43gpo3SbZ2g49+ucGTZkb3Mog//soMnTmkQhFru5Bdyf/YBWE2ZzwCTA==
+"@jup-ag/core@~0.0.0-alpha.4":
+  version "0.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-0.0.0-alpha.4.tgz#78e4c1eeadef4dd48c65b7e50021883d1bd885d8"
+  integrity sha512-aUBRT7stzZW+akp1TUQzzJC71ciJUVnfw5biT3VwYWSvol5F15Q0PmCfprW7DkaUHywuoQmuOqEFwz6qo2N4/g==
   dependencies:
     "@mercurial-finance/stable-swap-n-pool" "0.1.2"
     "@orca-so/sdk" "~1.1.13"
@@ -194,15 +194,16 @@
     "@solana/web3.js" "~1.30.2"
     bn.js "~5.2.0"
     decimal.js "~10.3.1"
+    jsbi "~4.1.0"
     node-fetch "2.6.1"
     promise-retry "~2.0.1"
 
-"@jup-ag/react-hook@^0.0.0-alpha.3":
-  version "0.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-0.0.0-alpha.3.tgz#3b10e340c524624ce5766808393552cf288530a5"
-  integrity sha512-u22XZdBs64JZDBXFaBKUMfTXTApxhpQysw7IwG0uNiiuQzVpTYAIsciAgUIiM6fGuBQ1gRX8DId+eHMcJrQmVw==
+"@jup-ag/react-hook@^0.0.0-alpha.4":
+  version "0.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-0.0.0-alpha.4.tgz#f3ca732c91e3d0f73f87cfc83208edd3f28e5b79"
+  integrity sha512-fW7pAiHZ9qheNNLa+oVXSpw0+B/BYnwWSrORrufzHUUUzEA2+zAsjjxFzi2RrjvTVd8E+Tw2yogUm7/xFe1Wyg==
   dependencies:
-    "@jup-ag/core" "~0.0.0-alpha.3"
+    "@jup-ag/core" "~0.0.0-alpha.4"
 
 "@ledgerhq/devices@^6.11.2":
   version "6.11.2"
@@ -3184,7 +3185,7 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-jsbi@^4.1.0:
+jsbi@~4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-4.1.0.tgz#f0c25ed8881bc09891334b03a3952efaa7add337"
   integrity sha512-384Z4keIsJtYpnVggsxaB255MZctILbxv+ihtwoWPF7KNOlYHn1LFpRnUw5qsAspUAA2+I7qzjVJxVYtHVjxNw==
