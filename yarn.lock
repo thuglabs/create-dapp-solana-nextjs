@@ -178,13 +178,13 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@jup-ag/core@~0.0.0-alpha.4":
-  version "0.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-0.0.0-alpha.4.tgz#78e4c1eeadef4dd48c65b7e50021883d1bd885d8"
-  integrity sha512-aUBRT7stzZW+akp1TUQzzJC71ciJUVnfw5biT3VwYWSvol5F15Q0PmCfprW7DkaUHywuoQmuOqEFwz6qo2N4/g==
+"@jup-ag/core@~0.0.0-alpha.9":
+  version "0.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-0.0.0-alpha.9.tgz#37077818a3d03df102c48de39b01215a5a5b776d"
+  integrity sha512-ZiBRylBY/vvQX+7fzhYl5VbjSsTXW8lTQmt3w3d2yObHyvpWau3EKtqd8W9Zpqncz45iqyMwrgROyPwYLDAPKg==
   dependencies:
     "@mercurial-finance/stable-swap-n-pool" "0.1.2"
-    "@orca-so/sdk" "~1.1.13"
+    "@orca-so/sdk" "1.2.2"
     "@project-serum/anchor" "0.17.1-beta.1"
     "@project-serum/serum" "~0.13.60"
     "@saberhq/stableswap-sdk" "~1.6.2"
@@ -198,12 +198,12 @@
     node-fetch "2.6.1"
     promise-retry "~2.0.1"
 
-"@jup-ag/react-hook@^0.0.0-alpha.4":
-  version "0.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-0.0.0-alpha.4.tgz#f3ca732c91e3d0f73f87cfc83208edd3f28e5b79"
-  integrity sha512-fW7pAiHZ9qheNNLa+oVXSpw0+B/BYnwWSrORrufzHUUUzEA2+zAsjjxFzi2RrjvTVd8E+Tw2yogUm7/xFe1Wyg==
+"@jup-ag/react-hook@^0.0.0-alpha.9":
+  version "0.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/@jup-ag/react-hook/-/react-hook-0.0.0-alpha.9.tgz#b1e682c383fdc57b166a524ac12298bd51410985"
+  integrity sha512-EtsCRgi7Z7zIbMgcJ1fz0muBV7OrDTF82H2mbyBFSR5mJNCqOtyKcW9VPcx7PJ04cnb45qTHaBcUlB1nf5jf8Q==
   dependencies:
-    "@jup-ag/core" "~0.0.0-alpha.4"
+    "@jup-ag/core" "~0.0.0-alpha.9"
 
 "@ledgerhq/devices@^6.11.2":
   version "6.11.2"
@@ -390,10 +390,10 @@
     typescript "^4.3.2"
     yargs "^17.0.1"
 
-"@orca-so/sdk@~1.1.13":
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/@orca-so/sdk/-/sdk-1.1.13.tgz#f1090bc87a7e4c5057e9b3cf05fdcdeefcd4bb23"
-  integrity sha512-Ohiy5szvhghjT4DCck0pka24e/o24cIKwpjMS8DP0A6NBbmqQZrXrkDoGNJ9L6H+KWgIXhbIC5966nCEiIK1/Q==
+"@orca-so/sdk@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@orca-so/sdk/-/sdk-1.2.2.tgz#5b3a2034efe5ac76e1e857e152cce41deee335eb"
+  integrity sha512-BaMvUo2jRKaml4i/h70qqLJzwom98qTC66XpXBw5gBBS2YTWzDp1rtKy3QRWQZjCoQAavrsMRQsQw9wcteOK+Q==
   dependencies:
     "@orca-so/aquafarm" "^0.0.12"
     "@orca-so/stablecurve" "^1.0.5"

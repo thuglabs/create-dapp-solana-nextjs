@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@jup-ag/react-hook": "^0.0.0-alpha.4",
+    "@jup-ag/react-hook": "^0.0.0-alpha.9",
     "@solana/spl-token-registry": "^0.2.298",
     "@solana/wallet-adapter-base": "^0.7.0",
     "@solana/wallet-adapter-phantom": "^0.7.0",
