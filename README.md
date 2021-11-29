@@ -1,18 +1,4 @@
-# Create Solana Dapp with Next.JS
-
-
-https://user-images.githubusercontent.com/188568/142045700-091d598f-5b1a-48fa-9278-6b8d3e712907.mp4
-
-
-
-## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
-
-This project includes:
-
-- Next.JS
-- TypeScript
-- [@solana/wallet-adapter](https://github.com/solana-labs/wallet-adapter) and [@solana/web3.js](https://solana-labs.github.io/solana-web3.js) for interactions with wallets & blockchain.
-- Tailwind CSS (with [daisyUI](https://daisyui.com/))
+# WOOF Dashboard with Next.JS
 
 ## Getting Started
 
