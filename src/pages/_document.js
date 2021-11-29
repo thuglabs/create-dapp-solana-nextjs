@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <meta
             name="description"
-            content="This site will fly high 🦤"
+            content="Backend Dashboard for the WOOF community"
           />
           <link rel="icon" href="/favicon.ico" />
 

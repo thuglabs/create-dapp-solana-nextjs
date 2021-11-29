@@ -21,7 +21,7 @@ export const HomeView: FC = ({}) => {
             </button>
           </div>
           <div className="flex-1 px-2 mx-2">
-            <span className="text-lg font-bold">Caw Caw</span>
+            <span className="text-lg font-bold">WOOF Dashboard</span>
           </div>
           <div className="flex-none">
             <WalletMultiButton className="btn btn-ghost" />
@@ -33,35 +33,39 @@ export const HomeView: FC = ({}) => {
             <div className="text-center hero-content">
               <div className="max-w-lg">
                 <h1 className="mb-5 text-5xl font-bold">
-                  Hello Solana <SolanaLogo /> World!
+                  Hello WOOFer!
                 </h1>
                 <p className="mb-5">
-                  This scaffold includes awesome tools for rapid development and
-                  deploy dapps to Solana: Next.JS, TypeScript, TailwindCSS,
-                  Daisy UI.
+                  Welcome to the WOOF dashboard!
                 </p>
                 <p className="mb-5">
-                  Sollana wallet adapter is connected and ready to use.
+                  Connect your wallet to enter.
                 </p>
-                <p>
+                <p className="text-green-500">
                   {publicKey ? <>Your address: {publicKey.toBase58()}</> : null}
                 </p>
+                <div className="mt-10">
+                  {/* <h1 className="mb-5 text-5xl">Templates:</h1> */}
+                  <ul>
+                    <li>
+                      <Link href="/gallery">
+                        <a className="mb-5 text-4xl font-bold hover:underline">
+                          Your NFT Gallery
+                        </a>
+                      </Link>
+                    </li>
+                  </ul>
+                  
+                </div>
+                </div>
               </div>
+              
+              <div>
+
             </div>
           </div>
 
-          <div>
-            <h1 className="mb-5 text-5xl">Templates:</h1>
-            <ul>
-              <li>
-                <Link href="/gallery">
-                  <a className="mb-5 text-4xl font-bold hover:underline">
-                    1 -- 🏞 🌄 🎑 -- NFT Gallery
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
+          
         </div>
       </div>
     </div>
