@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWalletNfts, NftTokenAccount } from "@nfteyez/sol-rayz-react";
+import { useConnection } from "@solana/wallet-adapter-react";
 
 import { Loader, SolanaLogo, SelectAndConnectWalletButton } from "components";
 import { NftCard } from "./NftCard";
@@ -10,12 +11,14 @@ import styles from "./index.module.css";
 const walletPublicKey = "3EqUrFrjgABCWAnqMYjZ36GcktiwDtFdkNYwY6C6cDzy";
 
 export const GalleryView: FC = ({}) => {
+  const { connection } = useConnection();
   const [walletToParsePublicKey, setWalletToParsePublicKey] =
     useState<string>(walletPublicKey);
   const { publicKey } = useWallet();
 
   const { nfts, isLoading, error } = useWalletNfts({
     publicAddress: walletToParsePublicKey,
+    connection,
   });
 
   console.log("nfts", nfts);
@@ -119,7 +122,7 @@ export const GalleryView: FC = ({}) => {
                       <Loader />
                     </div>
                   ) : (
-                    <NftList nfts={nfts} />
+                    <NftList nfts={nfts} error={error} />
                   )}
                 </div>
               </div>
@@ -133,9 +136,22 @@ export const GalleryView: FC = ({}) => {
 
 type NftListProps = {
   nfts: NftTokenAccount[];
+  error?: Error;
 };
 
-const NftList = ({ nfts }: NftListProps) => {
+const NftList = ({ nfts, error }: NftListProps) => {
+  if (error) {
+    return null;
+  }
+
+  if (!nfts?.length) {
+    return (
+      <div className="text-center text-2xl pt-16">
+        No NFTs found in this wallet
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
       {nfts?.map((nft) => (

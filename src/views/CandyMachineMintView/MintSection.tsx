@@ -113,22 +113,34 @@ export const MintSection = (props: HomeProps) => {
     (async () => {
       if (!wallet) return;
 
-      const {
-        candyMachine,
-        goLiveDate,
-        itemsRemaining,
-        itemsAvailable,
-        price,
-      } = await getCandyMachineState(wallet, props.candyMachineId, connection);
+      try {
+        const {
+          candyMachine,
+          goLiveDate,
+          itemsRemaining,
+          itemsAvailable,
+          price,
+        } = await getCandyMachineState(
+          wallet,
+          props.candyMachineId,
+          connection
+        );
 
-      setIsSoldOut(itemsRemaining === 0);
-      setStartDate(goLiveDate);
-      setCandyMachine(candyMachine);
-      setCounter({
-        itemsRemaining,
-        itemsAvailable,
-      });
-      setPrice(price / LAMPORTS_PER_SOL);
+        setIsSoldOut(itemsRemaining === 0);
+        setStartDate(goLiveDate);
+        setCandyMachine(candyMachine);
+        setCounter({
+          itemsRemaining,
+          itemsAvailable,
+        });
+        setPrice(price / LAMPORTS_PER_SOL);
+      } catch (error) {
+        console.error(error);
+
+        alert.error(
+          "Error fetching CandyMachine. Check browser console for the details."
+        );
+      }
     })();
   }, [wallet, props.candyMachineId, connection]);
 
@@ -180,6 +192,7 @@ export const MintSection = (props: HomeProps) => {
 };
 
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
+  if (!seconds) return <span>Loading...</span>;
   return (
     <span>
       {hours} hours, {minutes} minutes, {seconds} seconds
