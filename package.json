@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
-    "@nfteyez/sol-rayz-react": "^0.7.0",
+    "@nfteyez/sol-rayz-react": "^0.8.2",
     "@project-serum/anchor": "^0.19.0",
     "@solana/spl-token": "^0.1.8",
     "@solana/wallet-adapter-base": "^0.7.0",
