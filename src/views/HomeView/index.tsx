@@ -50,13 +50,20 @@ export const HomeView: FC = ({}) => {
             </div>
           </div>
 
-          <div>
-            <h1 className="mb-5 text-5xl">Templates:</h1>
-            <ul>
-              <li>
+          <div className="max-w-4xl mx-auto">
+            <h1 className="mb-5 pb-8 text-5xl">Templates:</h1>
+            <ul className="text-left leading-10">
+              <li className="mb-5">
                 <Link href="/gallery">
                   <a className="mb-5 text-4xl font-bold hover:underline">
-                    1 -- 🏞 🌄 🎑 -- NFT Gallery
+                    🏞 -- NFT Gallery
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/mint">
+                  <a className="mb-5 text-4xl font-bold hover:underline">
+                    🍬 -- Candy Machine Mint UI
                   </a>
                 </Link>
               </li>

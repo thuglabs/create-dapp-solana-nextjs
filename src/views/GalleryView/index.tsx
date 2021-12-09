@@ -37,7 +37,7 @@ export const GalleryView: FC = ({}) => {
         <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <span className="text-4xl">🦤</span>
+              <span className="text-4xl">🏞</span>
             </button>
           </div>
           <div className="flex-1 px-2 mx-2">

@@ -1,8 +1,14 @@
-export function Loader({ text = "Loading..." }) {
+import { FC } from "react";
+
+type Props = {
+  noText?: boolean;
+  text?: string;
+};
+export const Loader: FC<Props> = ({ text = "Loading...", noText = false }) => {
   return (
-    <div className="flex flex-col justify-center items-center pt-16 text-xl font-light">
+    <div className="flex flex-col justify-center items-center text-xl font-light">
       <svg
-        className="animate-spin -ml-1 mr-3 h-8 w-8 text-white"
+        className="animate-spin h-8 w-8 text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="white"
         viewBox="0 0 24 24"
@@ -21,7 +27,7 @@ export function Loader({ text = "Loading..." }) {
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         ></path>
       </svg>{" "}
-      <div className="opacity-50 mt-4">{text}</div>
+      {!noText ? <div className="opacity-50 mt-4">{text}</div> : null}
     </div>
   );
-}
+};

@@ -1,9 +1,6 @@
 # Create Solana Dapp with Next.JS
 
-
 https://user-images.githubusercontent.com/188568/142045700-091d598f-5b1a-48fa-9278-6b8d3e712907.mp4
-
-
 
 ## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
 
@@ -43,3 +40,10 @@ Before push run localy `npm run build` to make sure app can be build succesffull
 
 Vercel will automatically create environment and deployment for you if you have vercel account connected to your GitHub account. Go to the vercel.com to connect it.
 Then any push to `main` branch will automatically rebuild and redploy app.
+
+## Templates
+
+This boilerplate includes some templates you may find useful:
+
+- NFT Gallery Template
+- Candy Machine Mint Website (based on [https://github.com/exiled-apes/candy-machine-mint](https://github.com/exiled-apes/candy-machine-mint))
