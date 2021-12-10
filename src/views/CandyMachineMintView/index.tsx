@@ -91,7 +91,8 @@ export const CandyMachineMintView: FC = ({}) => {
             <p>
               You can test this Candy Machine mint on Devnet.
               <br />
-              Switch to Devnet in <code>src/pages/_app.tsx</code> file.
+              Switch to Devnet in <code>src/pages/_app.tsx</code> file. And run
+              app locally.
             </p>
             <br />
             <p>

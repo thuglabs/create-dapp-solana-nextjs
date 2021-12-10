@@ -12,7 +12,7 @@ const withTM = require("next-transpile-modules")([
   "@solana/wallet-adapter-phantom",
   "@solana/wallet-adapter-react",
   "@solana/wallet-adapter-solflare",
-  "@solana/wallet-adapter-sollet",
+  // "@solana/wallet-adapter-sollet",
   // "@solana/wallet-adapter-solong",
   // "@solana/wallet-adapter-torus",
   "@solana/wallet-adapter-wallets",
@@ -46,6 +46,10 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false;
+      // FIX this
+      // Disable minimize to make it work with Candy Machine template
+      // minimization brakes Public Key names
+      config.optimization.minimize = false;
     }
     return config;
   },
