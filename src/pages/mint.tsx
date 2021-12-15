@@ -18,7 +18,7 @@ const Mint: NextPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Mint NFT!</title>
+        <title>Mint a ForgeBot</title>
         <meta name="description" content="This site will fly high 🦤" />
       </Head>
       <AlertProvider template={AlertTemplate} {...options}>
