@@ -1,37 +1,41 @@
-import * as React from "react";
-import { TokenListProvider, TokenInfo, ENV } from "@solana/spl-token-registry";
-import { useJupiter, RouteInfo, TransactionFeeInfo } from "@jup-ag/react-hook";
+import React, { FunctionComponent, useEffect, useMemo, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
-import styles from "./JupiterForm.module.css";
+import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-interface IJupiterFormProps {}
 
+import { useJupiter } from "@jup-ag/react-hook";
+import { CHAIN_ID, INPUT_MINT_ADDRESS, OUTPUT_MINT_ADDRESS } from "../../constants";
+
+import styles from "./JupiterForm.module.css";
+import FeeInfo from "./FeeInfo";
+
+interface IJupiterFormProps { }
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
 
-const JupiterForm: React.FunctionComponent<IJupiterFormProps> = (props) => {
+const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const wallet = useWallet();
   const { connection } = useConnection();
-  const [tokenMap, setTokenMap] = React.useState<Map<string, TokenInfo>>(
+  const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(
     new Map()
   );
 
-  const [formValue, setFormValue] = React.useState<UseJupiterProps>({
-    amount: 0,
-    inputMint: undefined,
-    outputMint: undefined,
-    slippage: 0,
+  const [formValue, setFormValue] = useState<UseJupiterProps>({
+    amount: 1 * (10 ** 6), // unit in lamports (Decimals)
+    inputMint: new PublicKey(INPUT_MINT_ADDRESS),
+    outputMint: new PublicKey(OUTPUT_MINT_ADDRESS),
+    slippage: 1, // 0.1%
   });
 
-  const [inputTokenInfo, outputTokenInfo] = React.useMemo(() => {
+  const [inputTokenInfo, outputTokenInfo] = useMemo(() => {
     return [
       tokenMap.get(formValue.inputMint?.toBase58() || ""),
       tokenMap.get(formValue.outputMint?.toBase58() || ""),
     ];
   }, [formValue.inputMint?.toBase58(), formValue.outputMint?.toBase58()]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     new TokenListProvider().resolve().then((tokens) => {
-      const tokenList = tokens.filterByChainId(ENV.MainnetBeta).getList();
+      const tokenList = tokens.filterByChainId(CHAIN_ID).getList();
 
       setTokenMap(
         tokenList.reduce((map, item) => {
@@ -42,36 +46,23 @@ const JupiterForm: React.FunctionComponent<IJupiterFormProps> = (props) => {
     });
   }, [setTokenMap]);
 
-  const amountInDecimal = React.useMemo(() => {
+  const amountInDecimal = useMemo(() => {
     return formValue.amount * 10 ** (inputTokenInfo?.decimals || 1);
   }, [inputTokenInfo, formValue.amount]);
 
-  const { routeMap, allTokenMints, routes, loading, exchange, error } =
+  const { routeMap, allTokenMints, routes, loading, exchange, error, refresh } =
     useJupiter({
       ...formValue,
       amount: amountInDecimal,
     });
 
-  const validOutputMints = React.useMemo(
+  const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
     [routeMap, formValue.inputMint?.toBase58()]
   );
 
-  // setup inputMint and outputMint
-  React.useEffect(() => {
-    if (!formValue.inputMint && allTokenMints.length) {
-      const input = allTokenMints[0];
-      const output = routeMap.get(input)![0];
-      setFormValue((val) => ({
-        ...val,
-        inputMint: new PublicKey(allTokenMints[0]),
-        outputMint: new PublicKey(output),
-      }));
-    }
-  }, [allTokenMints]);
-
   // ensure outputMint can be swapable to inputMint
-  React.useEffect(() => {
+  useEffect(() => {
     if (formValue.inputMint) {
       const possibleOutputs = routeMap.get(formValue.inputMint.toBase58());
 
@@ -88,7 +79,7 @@ const JupiterForm: React.FunctionComponent<IJupiterFormProps> = (props) => {
   }, [formValue.inputMint?.toBase58(), formValue.outputMint?.toBase58()]);
 
   return (
-    <div>
+    <div className="max-w-full md:max-w-lg">
       <div className="mb-2">
         <label htmlFor="inputMint" className="block text-sm font-medium">
           Input token
@@ -165,23 +156,23 @@ const JupiterForm: React.FunctionComponent<IJupiterFormProps> = (props) => {
         </div>
       </div>
 
-      {loading && (
-        <div className="flex justify-center items-center">
-          <div
-            className={`${styles.loader} ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24`}
-          ></div>
-          loading...
-        </div>
-      )}
 
-      {!loading && (
+      <div className="flex justify-center">
         <button
-          className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className={`${loading ? 'opacity-50 cursor-not-allowed' : ''} inline-flex items-center px-4 py-2 mt-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           type="button"
+          onClick={refresh}
+          disabled={loading}
         >
+          {loading && (
+            <div
+              className={`${styles.loader} mr-4 ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24`}
+            ></div>
+          )}
+
           Refresh rate
         </button>
-      )}
+      </div>
 
       <div>Total routes: {routes?.length}</div>
 
@@ -206,80 +197,54 @@ const JupiterForm: React.FunctionComponent<IJupiterFormProps> = (props) => {
 
       {error && <div>Error in Jupiter, try changing your intpu</div>}
 
-      <button
-        type="button"
-        disabled={loading}
-        onClick={async () => {
-          if (
-            !loading &&
-            routes?.[0] &&
-            wallet.signAllTransactions &&
-            wallet.signTransaction &&
-            wallet.sendTransaction &&
-            wallet.publicKey
-          ) {
-            const swapResult = await exchange({
-              wallet: {
-                sendTransaction: wallet.sendTransaction,
-                publicKey: wallet.publicKey,
-                signAllTransactions: wallet.signAllTransactions,
-                signTransaction: wallet.signTransaction,
-              },
-              route: routes[0],
-              confirmationWaiterFactory: async (txid) => {
-                console.log("sending transaction");
-                await connection.confirmTransaction(txid);
-                console.log("confirmed transaction");
+      <div className="flex justify-center mt-4">
+        <button
+          type="button"
+          disabled={loading}
+          onClick={async () => {
+            if (
+              !loading &&
+              routes?.[0] &&
+              wallet.signAllTransactions &&
+              wallet.signTransaction &&
+              wallet.sendTransaction &&
+              wallet.publicKey
+            ) {
+              const swapResult = await exchange({
+                wallet: {
+                  sendTransaction: wallet.sendTransaction,
+                  publicKey: wallet.publicKey,
+                  signAllTransactions: wallet.signAllTransactions,
+                  signTransaction: wallet.signTransaction,
+                },
+                route: routes[0],
+                confirmationWaiterFactory: async (txid) => {
+                  console.log("sending transaction");
+                  await connection.confirmTransaction(txid);
+                  console.log("confirmed transaction");
 
-                return await connection.getTransaction(txid, {
-                  commitment: "confirmed",
-                });
-              },
-            });
+                  return await connection.getTransaction(txid, {
+                    commitment: "confirmed",
+                  });
+                },
+              });
 
-            console.log({ swapResult });
+              console.log({ swapResult });
 
-            if ("error" in swapResult) {
-              console.log("Error:", swapResult.error);
-            } else if ("txid" in swapResult) {
-              console.log("Sucess:", swapResult.txid);
-              console.log("Input:", swapResult.inputAmount);
-              console.log("Output:", swapResult.outputAmount);
+              if ("error" in swapResult) {
+                console.log("Error:", swapResult.error);
+              } else if ("txid" in swapResult) {
+                console.log("Sucess:", swapResult.txid);
+                console.log("Input:", swapResult.inputAmount);
+                console.log("Output:", swapResult.outputAmount);
+              }
             }
-          }
-        }}
-        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >
-        Swap Best Route
-      </button>
-    </div>
-  );
-};
-
-const FeeInfo: React.FC<{ route: RouteInfo }> = ({ route }) => {
-  const [state, setState] = React.useState<TransactionFeeInfo>();
-  React.useEffect(() => {
-    setState(undefined);
-    route.getDepositAndFee().then(setState);
-  }, [route]);
-  return (
-    <div>
-      {state && (
-        <div>
-          <br />
-          Deposit For serum: {/* In lamports */}
-          {state.openOrdersDeposits.reduce((total, i) => total + i, 0) /
-            10 ** 9}{" "}
-          SOL
-          <br />
-          Deposit For ATA: {/* In lamports */}
-          {state.ataDeposit / 10 ** 9} SOL
-          <br />
-          Fee: {/* In lamports */}
-          {state.signatureFee / 10 ** 9} SOL
-          <br />
-        </div>
-      )}
+          }}
+          className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Swap Best Route
+        </button>
+      </div>
     </div>
   );
 };

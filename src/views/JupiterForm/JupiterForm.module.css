@@ -2,6 +2,8 @@
     border-top-color: #3498db;
     -webkit-animation: spinner 1.5s linear infinite;
     animation: spinner 1.5s linear infinite;
+    width: 24px;
+    height: 24px;
   }
 
   @-webkit-keyframes spinner {

@@ -1,20 +1,20 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { HomeView } from "../views";
+import Home from "../views/Home";
 
-const Home: NextPage = (props) => {
+const Index: NextPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Caw Caw!</title>
+        <title>Jupiter dApp Scaffold</title>
         <meta
           name="description"
           content="This site will fly high 🦤"
         />
       </Head>
-      <HomeView />
+      <Home />
     </div>
   );
 };
 
-export default Home;
+export default Index;
