@@ -90,10 +90,13 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           className="mt-1 bg-neutral block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
           value={formValue.inputMint?.toBase58()}
           onChange={(e) => {
-            setFormValue((val) => ({
-              ...val,
-              inputMint: new PublicKey(e.currentTarget.value),
-            }));
+            const pbKey = new PublicKey(e.currentTarget.value);
+            if (pbKey) {
+              setFormValue((val) => ({
+                ...val,
+                inputMint: pbKey,
+              }));
+            }
           }}
         >
           {allTokenMints.map((tokenMint) => {
@@ -116,10 +119,13 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           className="mt-1 bg-neutral block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
           value={formValue.outputMint?.toBase58()}
           onChange={(e) => {
-            setFormValue((val) => ({
-              ...val,
-              outputMint: new PublicKey(e.currentTarget.value),
-            }));
+            const pbKey = new PublicKey(e.currentTarget.value);
+            if (pbKey) {
+              setFormValue((val) => ({
+                ...val,
+                outputMint: pbKey,
+              }));
+            }
           }}
         >
           {validOutputMints.map((tokenMint) => {
@@ -176,7 +182,8 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
 
       <div>Total routes: {routes?.length}</div>
 
-      {routes?.[0] &&
+      {
+        routes?.[0] &&
         (() => {
           const route = routes[0];
           return (
@@ -193,7 +200,8 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               <FeeInfo route={route} />
             </div>
           );
-        })()}
+        })()
+      }
 
       {error && <div>Error in Jupiter, try changing your intpu</div>}
 
@@ -245,7 +253,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           Swap Best Route
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 
