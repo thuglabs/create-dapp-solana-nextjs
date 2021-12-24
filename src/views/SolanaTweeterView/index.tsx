@@ -247,7 +247,7 @@ const NetTweet = () => {
   );
 };
 
-const Tweet = ({ content }) => {
+const Tweet = ({ content }: any) => {
   return (
     <div className="mb-8 border-b border-gray-500 flex">
       <div className="avatar placeholder mr-4">
@@ -270,7 +270,7 @@ const Tweet = ({ content }) => {
   );
 };
 
-const TwitterProfile = ({ tweets, wallet }) => {
+const TwitterProfile = ({ tweets, wallet }: any) => {
   return (
     <div className="flex-1 text-left width-full">
       <div>Profile</div>
