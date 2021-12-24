@@ -80,6 +80,8 @@ export const SolanaTweeterView: FC = ({}) => {
                   </a>{" "}
                   tutorial.
                 </p>
+
+                <p>UI connects to DEVNET network.</p>
               </div>
             </div>
           </div>
