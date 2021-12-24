@@ -1,5 +1,19 @@
+import * as anchor from "@project-serum/anchor";
+
+type AccountData = {
+  author: anchor.web3.PublicKey;
+  timestamp: string;
+  topic: string;
+  content: string;
+};
 export class Tweet {
-  constructor(publicKey, accountData) {
+  publicKey: anchor.web3.PublicKey;
+  author: anchor.web3.PublicKey;
+  timestamp: string;
+  topic: string;
+  content: string;
+
+  constructor(publicKey: anchor.web3.PublicKey, accountData: AccountData) {
     this.publicKey = publicKey;
     this.author = accountData.author;
     this.timestamp = accountData.timestamp.toString();
@@ -35,7 +49,7 @@ const getDate = (timestamp: string) => {
 };
 
 function timeSince(date: any) {
-  var seconds = Math.floor((new Date() - date) / 1000);
+  var seconds = Math.floor(((new Date() as any) - date) / 1000);
 
   var interval = seconds / 31536000;
 
