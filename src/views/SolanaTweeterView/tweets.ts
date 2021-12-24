@@ -9,15 +9,15 @@ type GetTwitterProps = {
 };
 
 export const getTweets = async ({ program, filter = [] }: GetTwitterProps) => {
-  const tweetsRaw = await program.account.tweet.all(filter);
+  const tweetsRaw = await program.account.tweet.all(filter as any);
 
-  const tweets = tweetsRaw.map((t) => new Tweet(t.publicKey, t.account));
+  const tweets = tweetsRaw.map((t: any) => new Tweet(t.publicKey, t.account));
 
   console.log("tweets", tweets);
   return tweets;
 };
 
-export const authorFilter = (authorBase58PublicKey: anchor.web3.PublicKey) => ({
+export const authorFilter = (authorBase58PublicKey: string) => ({
   memcmp: {
     offset: 8, // Discriminator.
     bytes: authorBase58PublicKey,
@@ -65,5 +65,5 @@ export const sendTweet = async ({
   const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
 
   // Wrap the fetched account in a Tweet model so our frontend can display it.
-  return new Tweet(tweet.publicKey, tweetAccount);
+  return new Tweet(tweet.publicKey, tweetAccount as any);
 };

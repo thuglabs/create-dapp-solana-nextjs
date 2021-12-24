@@ -39,7 +39,7 @@ export const useProgram = ({ connection, wallet }: ProgramProps) => {
     //   const idl = await anchor.Program.fetchIdl(programID, provider);
     //   console.log("idl", idl);
 
-    const program = new anchor.Program(idl, programID, provider);
+    const program = new anchor.Program(idl as any, programID, provider);
 
     setProgram(program);
   };

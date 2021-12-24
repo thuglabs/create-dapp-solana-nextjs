@@ -113,10 +113,10 @@ export const SolanaTweeterView: FC = ({}) => {
 };
 
 const TwitterScreen = () => {
-  const wallet = useAnchorWallet();
+  const wallet: any = useAnchorWallet();
   const [activeTab, setActiveTab] = useState(1);
-  const [tweets, setTweets] = useState([]);
-  const [profileTweets, setProfileTweets] = useState([]);
+  const [tweets, setTweets] = useState<unknown[]>([]);
+  const [profileTweets, setProfileTweets] = useState<unknown[]>([]);
   const { connection } = useConnection();
   const { program } = useProgram({ connection, wallet });
 
@@ -181,7 +181,7 @@ const TwitterScreen = () => {
           <div className="text-xs">
             <NetTweet />
             {tweets.map((t) => (
-              <Tweet key={t.key} content={t} />
+              <Tweet key={(t as any).key} content={t} />
             ))}
           </div>
         ) : (
@@ -193,12 +193,12 @@ const TwitterScreen = () => {
 };
 
 const NetTweet = () => {
-  const wallet = useAnchorWallet();
+  const wallet: any = useAnchorWallet();
   const { connection } = useConnection();
   const { program } = useProgram({ connection, wallet });
-  const [content, setContent] = useState<String>("");
+  const [content, setContent] = useState<string>("");
 
-  const onContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
     if (value) {
       setContent(value);
@@ -247,7 +247,7 @@ const NetTweet = () => {
   );
 };
 
-const Tweet = ({ content }) => {
+const Tweet = ({ content }: any) => {
   return (
     <div className="mb-8 border-b border-gray-500 flex">
       <div className="avatar placeholder mr-4">
@@ -270,7 +270,7 @@ const Tweet = ({ content }) => {
   );
 };
 
-const TwitterProfile = ({ tweets, wallet }) => {
+const TwitterProfile = ({ tweets, wallet }: any) => {
   return (
     <div className="flex-1 text-left width-full">
       <div>Profile</div>
@@ -282,7 +282,7 @@ const TwitterProfile = ({ tweets, wallet }) => {
             You have no tweets
           </div>
         ) : null}
-        {tweets.map((t) => (
+        {tweets.map((t: any) => (
           <Tweet key={t.key} content={t} />
         ))}
       </div>
