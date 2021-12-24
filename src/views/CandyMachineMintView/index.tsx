@@ -71,6 +71,8 @@ export const CandyMachineMintView: FC = ({}) => {
                   </a>{" "}
                   code migrated to be used with Next.JS app.
                 </p>
+
+                <p>UI connects to DEVNET network.</p>
               </div>
             </div>
           </div>
