@@ -29,7 +29,7 @@ export const HomeView: FC = ({}) => {
         </div>
 
         <div className="text-center pt-2">
-          <div className="hero min-h-16 py-20">
+          <div className="hero min-h-16 py-4">
             <div className="text-center hero-content">
               <div className="max-w-lg">
                 <h1 className="mb-5 text-5xl font-bold">
@@ -55,15 +55,22 @@ export const HomeView: FC = ({}) => {
             <ul className="text-left leading-10">
               <li className="mb-5">
                 <Link href="/gallery">
-                  <a className="mb-5 text-4xl font-bold hover:underline">
+                  <a className="text-4xl font-bold hover:underline">
                     🏞 -- NFT Gallery
                   </a>
                 </Link>
               </li>
-              <li>
+              <li className="mb-5">
                 <Link href="/mint">
-                  <a className="mb-5 text-4xl font-bold hover:underline">
+                  <a className="text-4xl font-bold hover:underline">
                     🍬 -- Candy Machine Mint UI
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/tweeter">
+                  <a className="mb-5 text-4xl font-bold hover:underline">
+                    🐦 -- Solana Tweeter
                   </a>
                 </Link>
               </li>

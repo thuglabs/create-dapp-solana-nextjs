@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWalletNfts, NftTokenAccount } from "@nfteyez/sol-rayz-react";
-import { useConnection } from "@solana/wallet-adapter-react";
+// import { useConnection } from "@solana/wallet-adapter-react";
 
 import { Loader, SolanaLogo, SelectAndConnectWalletButton } from "components";
 import { NftCard } from "./NftCard";
@@ -11,14 +11,14 @@ import styles from "./index.module.css";
 const walletPublicKey = "3EqUrFrjgABCWAnqMYjZ36GcktiwDtFdkNYwY6C6cDzy";
 
 export const GalleryView: FC = ({}) => {
-  const { connection } = useConnection();
+  // const { connection } = useConnection();
   const [walletToParsePublicKey, setWalletToParsePublicKey] =
     useState<string>(walletPublicKey);
   const { publicKey } = useWallet();
 
   const { nfts, isLoading, error } = useWalletNfts({
     publicAddress: walletToParsePublicKey,
-    connection,
+    // connection,
   });
 
   console.log("nfts", nfts);
@@ -72,8 +72,9 @@ export const GalleryView: FC = ({}) => {
 
                 <div className="w-full min-w-full">
                   <p className="mb-5">
-                    Here is very basic example of NFT Gallery. <br />
-                    It uses{" "}
+                    Here is very basic example of NFT Gallery. It parses
+                    mainnet. <br />
+                    And uses{" "}
                     <a
                       href="https://www.npmjs.com/package/@nfteyez/sol-rayz-react"
                       target="_blank"
