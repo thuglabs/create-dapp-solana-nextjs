@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@jup-ag/react-hook": "^0.0.0-alpha.20",
+    "@jup-ag/react-hook": "1.0.0-beta.2",
     "@solana/spl-token-registry": "^0.2.298",
     "@solana/wallet-adapter-base": "^0.7.0",
     "@solana/wallet-adapter-phantom": "^0.7.0",
@@ -35,5 +35,8 @@
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
     "typescript": "4.4.4"
+  },
+  "resolutions": {
+    "**/@saberhq/token-utils/**/@solana/buffer-layout": "^3.0.0"
   }
 }
