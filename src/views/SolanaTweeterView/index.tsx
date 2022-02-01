@@ -3,19 +3,23 @@ import { FC, useEffect, useState } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 import { HomeIcon, UserIcon } from "@heroicons/react/outline";
+import orderBy from "lodash.orderby";
 
 import { Loader, SelectAndConnectWalletButton } from "components";
-// import * as anchor from "@project-serum/anchor";
+import * as anchor from "@project-serum/anchor";
 
 import { SolanaLogo } from "components";
 import styles from "./index.module.css";
 import { getTweets, authorFilter, sendTweet } from "./tweets";
 import { useProgram } from "./useProgram";
 
+const endpoint = "https://explorer-api.devnet.solana.com";
+
+const connection = new anchor.web3.Connection(endpoint);
+
 export const SolanaTweeterView: FC = ({}) => {
   const [isAirDropped, setIsAirDropped] = useState(false);
   const wallet = useAnchorWallet();
-  const { connection } = useConnection();
 
   const airdropToWallet = async () => {
     if (wallet) {
@@ -114,16 +118,16 @@ export const SolanaTweeterView: FC = ({}) => {
 
 const TwitterScreen = () => {
   const wallet: any = useAnchorWallet();
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const [tweets, setTweets] = useState<unknown[]>([]);
   const [profileTweets, setProfileTweets] = useState<unknown[]>([]);
-  const { connection } = useConnection();
   const { program } = useProgram({ connection, wallet });
+  const [lastUpdatedTime, setLastUpdatedTime] = useState<number>();
 
   useEffect(() => {
     fetchTweets();
     fetchProfileTweets();
-  }, [wallet]);
+  }, [wallet, lastUpdatedTime]);
 
   const fetchTweets = async () => {
     if (wallet && program) {
@@ -154,6 +158,15 @@ const TwitterScreen = () => {
     }
   };
 
+  const onTweenSent = (newTweet: unknown) => {
+    setTweets((prevState) => ({
+      ...prevState,
+      newTweet,
+    }));
+  };
+
+  const sortedTweets = orderBy(tweets, ["timestamp"], ["desc"]);
+
   return (
     <div className="rounded-lg shadow flex">
       <div className="border-r border-gray-500 mr-8">
@@ -179,8 +192,8 @@ const TwitterScreen = () => {
       <div className="flex flex-col items-center justify-center">
         {activeTab === 0 ? (
           <div className="text-xs">
-            <NetTweet />
-            {tweets.map((t) => (
+            <NetTweet onTweenSent={onTweenSent} />
+            {sortedTweets.map((t: any) => (
               <Tweet key={(t as any).key} content={t} />
             ))}
           </div>
@@ -192,9 +205,12 @@ const TwitterScreen = () => {
   );
 };
 
-const NetTweet = () => {
+type NetTweet = {
+  onTweenSent: (t: any) => void;
+};
+
+const NetTweet: FC<NetTweet> = ({ onTweenSent }) => {
   const wallet: any = useAnchorWallet();
-  const { connection } = useConnection();
   const { program } = useProgram({ connection, wallet });
   const [content, setContent] = useState<string>("");
 
@@ -218,6 +234,7 @@ const NetTweet = () => {
 
     console.log("added new tweet: ", tweet);
     setContent("");
+    onTweenSent(tweet);
   };
 
   return (

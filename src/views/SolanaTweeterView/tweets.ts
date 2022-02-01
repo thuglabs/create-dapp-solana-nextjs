@@ -1,7 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import bs58 from "bs58";
 
-import { Tweet } from "./Tweet";
+import { Tweet, AccountData } from "./Tweet";
 
 type GetTwitterProps = {
   program: anchor.Program<anchor.Idl>;
@@ -10,10 +10,7 @@ type GetTwitterProps = {
 
 export const getTweets = async ({ program, filter = [] }: GetTwitterProps) => {
   const tweetsRaw = await program.account.tweet.all(filter as any);
-
   const tweets = tweetsRaw.map((t: any) => new Tweet(t.publicKey, t.account));
-
-  console.log("tweets", tweets);
   return tweets;
 };
 
@@ -37,8 +34,8 @@ export const topicFilter = (topic: string) => ({
 
 type SendTweetProps = {
   program: anchor.Program<anchor.Idl>;
-  topic: String;
-  content: String;
+  topic: string;
+  content: string;
   wallet: any;
 };
 
@@ -61,9 +58,18 @@ export const sendTweet = async ({
     signers: [tweet],
   });
 
-  // Fetch the newly created account from the blockchain.
-  const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
+  // Fetch the newly created account from the blockchain may not work
+  // new account can be not found because it takes some time to confirm TX.
+  // const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
+
+  // instead we return object with same data
+  const newTweetAccount: AccountData = {
+    author: wallet.publicKey,
+    timestamp: new anchor.BN(new Date().getTime()),
+    topic,
+    content,
+  };
 
   // Wrap the fetched account in a Tweet model so our frontend can display it.
-  return new Tweet(tweet.publicKey, tweetAccount as any);
+  return new Tweet(tweet.publicKey, newTweetAccount);
 };

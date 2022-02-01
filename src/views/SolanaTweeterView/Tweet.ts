@@ -1,8 +1,8 @@
 import * as anchor from "@project-serum/anchor";
 
-type AccountData = {
+export type AccountData = {
   author: anchor.web3.PublicKey;
-  timestamp: string;
+  timestamp: anchor.BN;
   topic: string;
   content: string;
 };
