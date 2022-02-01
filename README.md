@@ -1,5 +1,8 @@
 # Create Solana Dapp with Next.JS
 
+Want to start develop with Solana fetching NFTs from the blockchain or power-up your [Anchor](https://project-serum.github.io/anchor/getting-started/introduction.html) app with UI?   
+This boilerplate can be used to setup your UI with React.JS / Next.JS and deploy it to [Vercel Platform](https://vercel.com/) in just a minutes.
+
 https://user-images.githubusercontent.com/188568/142045700-091d598f-5b1a-48fa-9278-6b8d3e712907.mp4
 
 ## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
