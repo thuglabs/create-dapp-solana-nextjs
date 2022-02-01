@@ -49,4 +49,4 @@ Then any push to `main` branch will automatically rebuild and redploy app.
 This boilerplate includes some templates you may find useful:
 
 - NFT Gallery Template
-- Candy Machine Mint Website (based on [https://github.com/exiled-apes/candy-machine-mint](https://github.com/exiled-apes/candy-machine-mint))
+- UI for Anchor app (Anchor program based on [this tutorial](https://lorisleiva.com/create-a-solana-dapp-from-scratch))
