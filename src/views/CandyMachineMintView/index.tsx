@@ -1,3 +1,20 @@
+/**
+ * This is template for Candy Machine v.1
+ *
+ *
+ *
+ *
+ * Most likely you don't need it since Candy Machine is updated to v.2
+ * which is differnt from v.1
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 import Link from "next/link";
 import { FC } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";

@@ -60,13 +60,13 @@ export const HomeView: FC = ({}) => {
                   </a>
                 </Link>
               </li>
-              <li className="mb-5">
+              {/* <li className="mb-5">
                 <Link href="/mint">
                   <a className="text-4xl font-bold hover:underline">
                     🍬 -- Candy Machine Mint UI
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/tweeter">
                   <a className="mb-5 text-4xl font-bold hover:underline">
