@@ -49,6 +49,11 @@ Before push run localy `npm run build` to make sure app can be build succesffull
 Vercel will automatically create environment and deployment for you if you have vercel account connected to your GitHub account. Go to the vercel.com to connect it.
 Then any push to `main` branch will automatically rebuild and redploy app.
 
+### Possible Issues 
+
+- You might [need to overwrite default output derictory](https://github.com/thuglabs/create-dapp-solana-nextjs/issues/23) for vercel settings if you see [`Routes Manifest Could Not Be Found
+`](https://github.com/vercel/vercel/blob/main/errors/now-next-routes-manifest.md) error.
+
 ## Templates
 
 This boilerplate includes some templates you may find useful:
